@@ -5,9 +5,9 @@ public class Card {
     private final int rank, suit;
     
     //these shouldn't change
-    public static final String [] ranks = {null, "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"}; // there is no zero card rank, make it null
+    public static final String [] ranks = {"Joker", "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"}; // there is no zero card rank, make it null
     public static final String [] suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
-
+    public final String name;
     /**
      * Constructs a card (intended for a deck of 52).
      * @param rank the rank of the card
@@ -16,6 +16,7 @@ public class Card {
     public Card(int rank, int suit) {
     	/*
     	 * RANK:
+    	 * 	Joker (card is unusable) = 0
     	 * 	Ace = 1
     	 * 	Numbers = (2-10)
     	 * 	Jack = 11
@@ -25,10 +26,11 @@ public class Card {
     	 * 	Clubs = 0
     	 * 	Diamonds = 1
     	 * 	Hearts = 2
-    	 * 	Spades = 4
+    	 * 	Spades = 3
     	 */
         this.rank = rank;
         this.suit = suit;
+        name = returnCardName();
     }
     
     /**
@@ -79,8 +81,11 @@ public class Card {
      * A user-readable string with the values of the card
      * @return the card's suit and rank
      */
-    public String returnCardString() {
-    	return (ranks[rank] + " of " + suits[suit]);
+    public String returnCardName() {
+    	if (returnRankValue() != 0) {
+    		return (ranks[rank] + " of " + suits[suit]);
+    	} else {return ranks[rank];}
+    	
     }
     
     /**
