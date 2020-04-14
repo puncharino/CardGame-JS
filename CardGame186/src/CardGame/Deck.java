@@ -7,6 +7,7 @@ public class Deck {
 	
 	//VARIABLES
 	//////////////////////////////////////////////////////
+	
 	/**
 	 * The deck of cards.
 	 */
@@ -47,7 +48,6 @@ public class Deck {
 		        i++;
 		    }
 		}
-		//this.shuffle(r);
 	}
 	
 	/**
@@ -86,7 +86,6 @@ public class Deck {
 		        i++;
 		    }
 		}
-		//printDeck(Deck);
 		this.shuffle(full);	//shuffle the deck before use with a given random generator
 		Deck = Arrays.copyOfRange(full, 0, maxCards);	// initialize new deck with max number of cards
 	}
