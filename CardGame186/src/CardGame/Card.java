@@ -8,7 +8,7 @@ import java.io.IOException;
 public class Card {
 	//a card needs to have these be constant throughout its existence, should never change
     private final int rank, suit;
-    private final String cardImageLocation = "/resources/card.images/";
+    private final String cardImageLocation = "resources/card.images/";
     private final File cardBackside = new File(cardImageLocation + "back.png");
     
     //these shouldn't change
@@ -161,4 +161,11 @@ public class Card {
         return new BufferedImage[]{cardFace, cardBack};
     }
 
+    /**
+     * Verifies whether or not the card is a Joker card (unusable)
+     * @return true if Joker, false if not
+     */
+    public boolean isJoker () {
+        return this.rank == 0;
+    }
 }
