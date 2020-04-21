@@ -1,7 +1,10 @@
 package CardGame186;
 
+import java.util.ArrayList;
+
 public class Player {
 	private int playerCards = 0;
+	private ArrayList<Card> hand = new ArrayList<Card>();
 	public Player() {
 	}
 	public static void main(String[] args) {
@@ -10,19 +13,20 @@ public class Player {
 		return playerCards;
 	}
 	public void drawCards(Deck newDeck) {
-		int cardValue = newDeck.drawCard().returnRankValue();
-		if (cardValue == 1 && playerCards < 11) {
+		Card drawn = newDeck.drawCard();
+		if (drawn.returnRankValue() == 1 && playerCards < 11) {
 			playerCards += 11;
 		}
-		else if (cardValue == 1 && playerCards >= 11){
+		else if (drawn.returnRankValue() == 1 && playerCards >= 11){
 			playerCards += 1;
 		}
-		else if (cardValue > 10) {
+		else if (drawn.returnRankValue() > 10) {
 			playerCards += 10;
 		}
 		else {
-		playerCards += cardValue;
+		playerCards += drawn.returnRankValue();
 		}
+		hand.add(drawn);
 	}
 	public int ace(boolean oneOrEleven) {
 		if (oneOrEleven == true){
