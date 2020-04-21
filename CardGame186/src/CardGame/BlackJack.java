@@ -1,48 +1,27 @@
 package CardGame186;
 
+
 public class BlackJack {
 	public static void main(String[] args) {	
-	BlackJack blackJack = new BlackJack();
+	Player player = new Player();
+	Dealer dealer = new Dealer();
 	Deck newDeck = new Deck();
 	boolean playerTurn = true;
-	int dealerCards = 0;
-	int playerCards = 0;
-	blackJack.dealInitialCards(dealerCards, playerCards, newDeck);
-	 while (newDeck.returnDeckSize() > 0 && playerCards < 22 && dealerCards < 22 && dealerCards != 21) {
+	player.dealInitialCards(newDeck);
+	dealer.dealInitialCards(newDeck);
+	System.out.println(player.getPlayerValue());
+	System.out.println(dealer.getDealerValue());
+	 while (newDeck.returnDeckSize() > 0 && player.getPlayerValue() < 22 && dealer.getDealerValue() < 22 && dealer.getDealerValue() != 21) {
 		 if (playerTurn) {
-		blackJack.hit(playerCards, newDeck);
+		player.hit(newDeck);
 		playerTurn = false;
+		System.out.println(player.getPlayerValue());
 	 }
-		 else if (!playerTurn && dealerCards < 21){
-		blackJack.hit(dealerCards, newDeck);
+		 else if (!playerTurn && dealer.getDealerValue() < 21){
+		dealer.hit(newDeck);
 		playerTurn = true;
+		System.out.println(dealer.getDealerValue());
 		 }
 	 }
-	}
-	public void drawCards(int f, Deck newDeck) {
-		int cardValue = newDeck.drawCard().returnRankValue();
-		if (cardValue == 1 && f < 11) {
-			f += 11;
-		}
-		else {
-			f += 1;
-		}
-	}
-	public int ace(boolean oneOrEleven) {
-		if (oneOrEleven == true){
-			return 1;	
-		}
-		else {
-			return 11;
-		}
-	}
-	public void dealInitialCards(int dealerCards, int playerCards, Deck newDeck) {
-		drawCards(dealerCards, newDeck);
-		drawCards(dealerCards, newDeck);
-		drawCards(playerCards, newDeck);
-		drawCards(playerCards, newDeck);
-	}
-	public void hit(int f, Deck newDeck){
-		drawCards(f, newDeck);
 	}
 }
