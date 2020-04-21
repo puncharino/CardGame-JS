@@ -5,7 +5,7 @@ public class BlackJack {
 	public static void main(String[] args) {	
 	Player player = new Player();
 	Dealer dealer = new Dealer();
-	Random r = new Random(12345);
+	Random r = new Random(123);
 	Deck newDeck = new Deck(52, r);
 	boolean playerTurn = true;
 	player.dealInitialCards(newDeck);
@@ -18,11 +18,11 @@ public class BlackJack {
 		playerTurn = false;
 		System.out.println(player.getPlayerValue());
 	 }
-		 else if (!playerTurn && dealer.getDealerValue() != 21){
+		 else if (!playerTurn && dealer.getDealerValue() < 17){
 		dealer.hit(newDeck);
 		playerTurn = true;
 		System.out.println(dealer.getDealerValue());
-		 }
-	 }
+		}
+	  }
 	}
 }
