@@ -15,6 +15,7 @@ public class BlackJack {
 	 }
 		 else if (!playerTurn && dealerCards < 21){
 		blackJack.hit(dealerCards, newDeck);
+		playerTurn = true;
 		 }
 	 }
 	}
