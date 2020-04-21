@@ -20,9 +20,13 @@ public class BlackJack {
 	 }
 		 else if (!playerTurn && dealer.getDealerValue() < 17){
 		dealer.hit(newDeck);
-		playerTurn = true;
 		System.out.println(dealer.getDealerValue());
+		playerTurn = true;
+	 	}
+		 else if (player.getPlayerValue() < 21 && dealer.getDealerValue() >= 17) {
+			 playerTurn = true;
 		}
 	  }
-	}
+   }
 }
+
