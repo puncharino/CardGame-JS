@@ -48,7 +48,9 @@ public class Dealer extends Player {
     public ArrayList<Card> getHand() {
         if (!dealerTurn) {
             ArrayList<Card> initialHand = super.getHand();
-            ArrayList<Card> visibleHand = new ArrayList<>(List.of(initialHand.get(0), new Card(0, 0)));
+            ArrayList<Card> visibleHand = new ArrayList<>();
+            visibleHand.add(initialHand.get(0);
+            visibleHand.add(new Card(0, 0));
             return visibleHand;
         } else {
             return super.getHand();
