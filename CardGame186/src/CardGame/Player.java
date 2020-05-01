@@ -1,46 +1,45 @@
-package CardGame186;
+package yjohnson;
 
 import java.util.ArrayList;
 
 public class Player {
-	private int playerCards = 0;
-	private ArrayList<Card> hand = new ArrayList<Card>();
-	public Player() {
-	}
-	public static void main(String[] args) {
-	}
-	public int getPlayerValue(){
-		return playerCards;
-	}
-	public void drawCards(Deck newDeck) {
-		Card drawn = newDeck.drawCard();
-		if (drawn.returnRankValue() == 1 && playerCards < 11) {
-			playerCards += 11;
-		}
-		else if (drawn.returnRankValue() == 1 && playerCards >= 11){
-			playerCards += 1;
-		}
-		else if (drawn.returnRankValue() > 10) {
-			playerCards += 10;
-		}
-		else {
-		playerCards += drawn.returnRankValue();
-		}
-		hand.add(drawn);
-	}
-	public int ace(boolean oneOrEleven) {
-		if (oneOrEleven == true){
-			return 1;	
-		}
-		else {
-			return 11;
-		}
-	}
-	public void dealInitialCards(Deck newDeck) {
-		drawCards(newDeck);
-		drawCards(newDeck);
-	}
-	public void hit(Deck newDeck){
-		drawCards(newDeck);
-	}
+
+    private ArrayList<Card> hand = new ArrayList<>();
+    private Deck mainDeck; // Should be the same as main deck in game
+
+    // Creates a player with two initial cards in hand from the deck
+    public Player (Deck mainDeck) {
+        for (int i = 0; i < 2; ++i) {
+            this.mainDeck = mainDeck;
+            hit();
+        }
+    }
+
+
+    private void hit () {
+        hand.add (mainDeck.drawCard());
+    }
+
+    // Hand total is dynamic; it will only change drastically when an Ace is present.
+    public int getHandTotal () {
+        int handTotal = 0;
+        for (Card e : hand) {
+            if (e.returnRankValue() >= 10) {
+                handTotal += 10;
+            } else if (e.returnRankValue() == 1) {
+
+                if (handTotal+11 > 21) {
+                    handTotal += 1;
+                } else {
+                    handTotal += 11;
+                }
+            } else { handTotal += e.returnRankValue(); }
+        }
+        return handTotal;
+    }
+
+
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
 }
