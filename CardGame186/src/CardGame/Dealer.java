@@ -1,7 +1,7 @@
-package yjohnson;
+package CardGame;
 
 import java.util.ArrayList;
-import java.util.List;
+//import java.util.List;
 
 public class Dealer extends Player {
 
@@ -11,9 +11,6 @@ public class Dealer extends Player {
         super(mainDeck);
     }
 
-    public void setDealerTurn(boolean dealerTurn) {
-        this.dealerTurn = dealerTurn;
-    }
 
     /**
      * Overrides the getHandTotal method. Only returns the value of the visible cards that the dealer has, simplifies
@@ -34,7 +31,7 @@ public class Dealer extends Player {
                 } else {
                     return 11;
                 }
-            }
+            } else return e.returnRankValue();
         }
         return super.getHandTotal();
     }

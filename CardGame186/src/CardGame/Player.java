@@ -1,22 +1,21 @@
-package yjohnson;
+package CardGame;
 
 import java.util.ArrayList;
 
 public class Player {
 
-    private ArrayList<Card> hand = new ArrayList<>();
+    ArrayList<Card> hand = new ArrayList<>();
     private Deck mainDeck; // Should be the same as main deck in game
 
     // Creates a player with two initial cards in hand from the deck
     public Player (Deck mainDeck) {
-        for (int i = 0; i < 2; ++i) {
+        //for (int i = 0; i < 2; ++i) {
             this.mainDeck = mainDeck;
-            hit();
-        }
+            //hit();
     }
 
 
-    private void hit () {
+    void hit () {
         hand.add (mainDeck.drawCard());
     }
 

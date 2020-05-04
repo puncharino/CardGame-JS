@@ -1,7 +1,11 @@
-package yjohnson;
+package CardGame;
 
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
+
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
+
+//import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -14,8 +18,16 @@ public class Card {
     //these shouldn't change
     public static final String [] ranks = {"Joker", "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"}; // there is no zero card rank, make it null
     public static final String [] suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
-    private BufferedImage cardFace = null;
-    private BufferedImage cardBack = null;
+    
+    
+    Image cardFace = null;
+    private Image cardBack = null;
+    
+    //static Image cardImage = SwingFXUtils.toFXImage(cardFace, null );
+    
+    //private String pathToImage = "";
+    
+    
 
 
     /**
@@ -54,13 +66,15 @@ public class Card {
             String pathToImage = cardImageLocation + this.returnRankValue() + "." + this.returnSuitValue() + ".png";
 
             try {                   // Try assigning the face image
-                cardFace = ImageIO.read(new File(pathToImage));
+                //cardFace = ImageIO.read(new File(pathToImage));
+                cardFace = SwingFXUtils.toFXImage(ImageIO.read(new File(pathToImage)),null);
             } catch (IOException e) {
                 System.err.printf("Error: Resource not found at: %s \n", pathToImage);
                 e.printStackTrace();
             } finally {             // If successful...
                 try {               // Try assigning the back image
-                    cardBack = ImageIO.read(cardBackside);
+                    //cardBack = ImageIO.read(cardBackside);
+                	cardBack = SwingFXUtils.toFXImage(ImageIO.read(cardBackside),null);
                 } catch (IOException e) {
                     System.err.printf("Error: Resource not found at: %s \n", cardBackside.toString());
                     e.printStackTrace();
@@ -68,8 +82,10 @@ public class Card {
             }
         } else {                    // If the card is a Joker
             try {                   // Try assigning the same back.png to both sides (Joker exclusive)
-                cardFace = ImageIO.read(cardBackside);
-                cardBack = ImageIO.read(cardBackside);
+                //cardFace = ImageIO.read(cardBackside);
+                cardFace = SwingFXUtils.toFXImage(ImageIO.read(cardBackside),null);
+                //cardBack = ImageIO.read(cardBackside);
+                cardBack = SwingFXUtils.toFXImage(ImageIO.read(cardBackside),null);
             } catch (IOException e) {
                 System.err.printf("Error: Resource not found at: %s \n", cardBackside.toString());
                 e.printStackTrace();
@@ -157,8 +173,8 @@ public class Card {
      * Returns an array of the card's face and back images.
      * @return array with cardFace at index 0 and cardBack at index 1.
      */
-    public BufferedImage [] returnCardImages () {
-        return new BufferedImage[]{cardFace, cardBack};
+    public Image [] returnCardImages () {
+        return new Image[]{cardFace, cardBack};
     }
 
     /**

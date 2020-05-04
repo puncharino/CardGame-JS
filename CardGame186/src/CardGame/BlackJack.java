@@ -1,50 +1,85 @@
-package CardGame186;
+package CardGame;
+
 import java.util.Random;
 
 public class BlackJack {
-	int playerBet = 0;
-	int playerWinnings = 0;
-	boolean playerTurn = true;
-	boolean dealerWin = false;
-	Player player = new Player();
-	Dealer dealer = new Dealer();
-	Random r = new Random(2332);
-	Deck newDeck = new Deck(52, r);
-	
-	
-	public BlackJack() {	
-	player.dealInitialCards(newDeck);
-	dealer.dealInitialCards(newDeck);
-	
-	while (newDeck.returnDeckSize() > 0 && dealer.getDealerValue() < 21) {
-		if (!playerTurn && dealer.getDealerValue() < 17){
-		dealer.hit(newDeck);
-	 	}
-		 else if (player.getPlayerValue() < 21 && dealer.getDealerValue() > player.getPlayerValue()) {
-			 dealerWin = true;
-		 }
-		 else if (player.getPlayerValue() <= 21 && dealer.getDealerValue() < player.getPlayerValue()) {
-			 dealerWin = false;
-			 playerWinnings = playerBet*2;
-		 }
-		 else if (player.getPlayerValue() == dealer.getDealerValue()) {
-			 playerWinnings = playerBet;
-		 }
+	 static int playerBet = 0;
+	 static int playerWinnings = 0;
+	 boolean playerTurn = true;
+	 static boolean dealerWin = false;
+	 static Random r = new Random();
+	 //104 for 21 bug
+	 static Deck newDeck = new Deck(r);
+	 static Player player = new Player(newDeck);
+	 static Dealer dealer = new Dealer(newDeck);
+	 static boolean gameState = true;
+
+	public static void Start() {
+
+		while (dealer.getHandTotal() < 21 && !dealerWin && gameState) {
+			if (dealer.getHandTotal() < 17) {
+				dealer.hit();
+				// BasicFXMLController.dealerUpdate();
+
+			} else if (dealer.getHandTotal() > player.getHandTotal()) {
+				dealerWin = true;
+				gameState = false;
+			} else if (dealer.getHandTotal() < player.getHandTotal()) {
+				dealerWin = false;
+				gameState = false;
+
+				playerWinnings = playerBet * 2;
+			} else if (player.getHandTotal() == dealer.getHandTotal()) {
+				playerWinnings = playerBet;
+				dealerWin = false;
+				gameState = false;
+			}
 		}
+
 	}
-	
-	public void bet(int bet){
+
+	public void bet(int bet) {
 		playerBet = bet;
 	}
+
 	public void playerHit() {
-		 if (playerTurn && player.getPlayerValue() < 21) {
-				player.hit(newDeck);
-			 }
-		 else {
-			 playerTurn = false;
-		 }
+		if (playerTurn && player.getHandTotal() < 21) {
+			player.hit();
+		} else {
+			playerTurn = false;
+		}
 	}
+
 	public void playerStand() {
 		playerTurn = false;
 	}
+
+	public static int getPlayerScore() {
+		return player.getHandTotal();
+	}
+
+	public static int getDealerScore() {
+		return dealer.getHandTotal();
+	}
+
+	public static void dealStartingCards() {
+		newDeck.shuffle();
+		for (int i = 0; i < 2; i++) {
+			player.hit();
+			dealer.hit();
+		}
+	}
+
+	public static boolean isBust() {
+		if (player.getHandTotal() > 21) {
+			return true;
+		} else
+			return false;
+
+	}
+	
+	public static Player getPlayer() {
+		return player;
+	}
+
 }
