@@ -5,11 +5,11 @@ import javax.imageio.ImageIO;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 
-//import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 public class Card {
+
 	//a card needs to have these be constant throughout its existence, should never change
     private final int rank, suit;
     private final String cardImageLocation = "CardGame186/resources/card.images/";

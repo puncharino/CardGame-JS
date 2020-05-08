@@ -6,6 +6,8 @@ package CardGame;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import CardGame.BlackJack;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
@@ -93,26 +95,26 @@ public class BasicFXMLController {
 	public void HitAction(ActionEvent event) {
 		System.out.println("You hit");
 		playerTimesHit++;
-		BlackJack.player.hit();
+		BlackJack.getPlayer().hit();
 
 		if (playerTimesHit == 1) {
 			playerCard5.setVisible(true);
-			playerCard5.setImage(BlackJack.player.getHand().get(2).cardFace);
+			playerCard5.setImage(BlackJack.getPlayer().getHand().get(2).cardFace);
 		}
 
 		if (playerTimesHit == 2) {
 			playerCard2.setVisible(true);
-			playerCard2.setImage(BlackJack.player.getHand().get(3).cardFace);
+			playerCard2.setImage(BlackJack.getPlayer().getHand().get(3).cardFace);
 		}
 
 		if (playerTimesHit == 3) {
 			playerCard6.setVisible(true);
-			playerCard6.setImage(BlackJack.player.getHand().get(4).cardFace);
+			playerCard6.setImage(BlackJack.getPlayer().getHand().get(4).cardFace);
 		}
 
 		if (playerTimesHit == 4) {
 			playerCard1.setVisible(true);
-			playerCard1.setImage(BlackJack.player.getHand().get(5).cardFace);
+			playerCard1.setImage(BlackJack.getPlayer().getHand().get(5).cardFace);
 		}
 
 		playerScoreValue.setText("" + BlackJack.getPlayerScore());

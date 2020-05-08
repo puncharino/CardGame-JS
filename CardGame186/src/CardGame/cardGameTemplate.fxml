@@ -1,171 +1,146 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CardGame.BasicFXMLController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <children>
-            <Rectangle arcHeight="5.0" fill="#25a811" height="400.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="10.0" width="640.0" />
-            <Button fx:id="hitButton" layoutX="230.0" layoutY="362.0" mnemonicParsing="false" onAction="#HitAction" text="Hit" visible="false">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button> 
-            <Button fx:id="standButton" layoutX="380.0" layoutY="362.0" mnemonicParsing="false" onAction="#StandAction" text="Stand" visible="false">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-            <Text fill="WHITE" layoutX="270.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Hand">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="255.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dealer's Hand">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="483.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Score:">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Text>
-            <Text fx:id="playerScoreValue" fill="WHITE" layoutX="594.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="??">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Text>
-            <Text fx:id="winText" fill="WHITE" layoutX="163.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YOU WIN!" visible="false">
-               <font>
-                  <Font size="63.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="453.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dealer's Score:">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Text>
-            <Text fx:id="dealerScoreValue" fill="WHITE" layoutX="596.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="??">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Text>
-            <Button fx:id="startButton" layoutX="248.0" layoutY="178.0" mnemonicParsing="false" onAction="#StartGame" text="START GAME">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <ImageView fx:id="dealerCard1" fitHeight="120.0" fitWidth="85.0" layoutX="137.0" layoutY="45.0" visible="false">
-               <image>
-                  <Image url="@/card.images/back.png" />
-               </image>
+<?import javafx.scene.text.*?>
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="CardGame.BasicFXMLController">
+    <AnchorPane VBox.vgrow="ALWAYS">
+        <Rectangle arcHeight="5.0" fill="#25a811" height="400.0" smooth="false" stroke="BLACK" strokeType="INSIDE"
+                   strokeWidth="10.0" width="640.0"/>
+        <Button fx:id="hitButton" layoutX="230.0" layoutY="362.0" mnemonicParsing="false" onAction="#HitAction"
+                text="Hit" visible="false">
+            <cursor>
+              <Cursor fx:constant="HAND"/>
+            </cursor>
+        </Button>
+        <Button fx:id="standButton" layoutX="380.0" layoutY="362.0" mnemonicParsing="false" onAction="#StandAction"
+                text="Stand" visible="false">
+            <cursor>
+              <Cursor fx:constant="HAND"/>
+            </cursor>
+        </Button>
+        <Text fill="WHITE" layoutX="270.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Hand">
+            <font>
+              <Font name="System Bold" size="20.0"/>
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="255.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dealer's Hand">
+            <font>
+              <Font name="System Bold" size="20.0"/>
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="483.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Score:">
+            <font>
+              <Font name="System Bold" size="20.0"/>
+            </font>
+        </Text>
+        <Text fx:id="playerScoreValue" fill="WHITE" layoutX="594.0" layoutY="379.0" strokeType="OUTSIDE"
+              strokeWidth="0.0" text="??">
+            <font>
+              <Font size="30.0"/>
+            </font>
+        </Text>
+        <Text fx:id="winText" fill="WHITE" layoutX="163.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="YOU WIN!" visible="false">
+            <font>
+              <Font size="63.0"/>
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="453.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Dealer's Score:">
+            <font>
+              <Font name="System Bold" size="20.0"/>
+            </font>
+        </Text>
+        <Text fx:id="dealerScoreValue" fill="WHITE" layoutX="596.0" layoutY="37.0" strokeType="OUTSIDE"
+              strokeWidth="0.0" text="??">
+            <font>
+              <Font size="30.0"/>
+            </font>
+        </Text>
+        <Button fx:id="startButton" layoutX="248.0" layoutY="178.0" mnemonicParsing="false" onAction="#StartGame"
+                text="START GAME">
+            <font>
+              <Font size="20.0"/>
+            </font>
+            <cursor>
+              <Cursor fx:constant="HAND"/>
+            </cursor>
+        </Button>
+        <ImageView fx:id="dealerCard" fitHeight="120.0" fitWidth="85.0" layoutX="137.0" layoutY="45.0"
+                   visible="false">
+            <Image url="@/card.images/back.png"/>
+        </ImageView>
+        <HBox layoutX="65.0" layoutY="238.0" prefHeight="100.0" prefWidth="200.0">
+            <ImageView fx:id="playerCard1" fitHeight="120.0" fitWidth="85.0" visible="false">
+                <Image url="@/card.images/back.png"/>
             </ImageView>
-            <HBox layoutX="65.0" layoutY="238.0" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <ImageView fx:id="playerCard1" fitHeight="120.0" fitWidth="85.0" visible="false">
-                     <image>
-                        <Image url="@/card.images/back.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="playerCard2" fitHeight="120.0" fitWidth="85.0" layoutX="10.0" layoutY="10.0" visible="false">
-                     <image>
-                        <Image url="@/card.images/back.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="playerCard3" fitHeight="120.0" fitWidth="85.0" layoutX="95.0" layoutY="10.0">
-                     <image>
-                        <Image url="@/card.images/back.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="playerCard4" fitHeight="120.0" fitWidth="85.0" layoutX="180.0" layoutY="10.0">
-                     <image>
-                        <Image url="@/card.images/back.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="playerCard5" fitHeight="120.0" fitWidth="85.0" layoutX="265.0" layoutY="10.0" visible="false">
-                     <image>
-                        <Image url="@/card.images/back.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="playerCard6" fitHeight="120.0" fitWidth="85.0" layoutX="350.0" layoutY="10.0" visible="false">
-                     <image>
-                        <Image url="@/card.images/back.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
-            <HBox layoutX="66.0" layoutY="45.0" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <ImageView fx:id="dealerCard1" fitHeight="120.0" fitWidth="85.0" visible="false">
-                     <image>
-                        <Image url="@/card.images/back.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="dealerCard2" fitHeight="120.0" fitWidth="85.0" layoutX="10.0" layoutY="10.0" visible="false">
-                     <image>
-                        <Image url="@/card.images/back.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="dealerCard3" fitHeight="120.0" fitWidth="85.0" layoutX="95.0" layoutY="10.0">
-                     <image>
-                        <Image url="@/card.images/back.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="dealerCard4" fitHeight="120.0" fitWidth="85.0" layoutX="180.0" layoutY="10.0">
-                     <image>
-                        <Image url="@/card.images/back.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="dealerCard5" fitHeight="120.0" fitWidth="85.0" layoutX="265.0" layoutY="10.0" visible="false">
-                     <image>
-                        <Image url="@/card.images/back.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="dealerCard6" fitHeight="120.0" fitWidth="85.0" layoutX="350.0" layoutY="10.0" visible="false">
-                     <image>
-                        <Image url="@/card.images/back.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
-            <Button fx:id="againButton" alignment="CENTER" layoutX="471.0" layoutY="178.0" mnemonicParsing="false" onAction="#reset" text="GO AGAIN?" visible="false">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Text fx:id="bustText" fill="RED" layoutX="167.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YOU BUST!" visible="false">
-               <font>
-                  <Font size="63.0" />
-               </font>
-            </Text>
-            <Text fx:id="LoseText" fill="RED" layoutX="168.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YOU Lose!" visible="false">
-               <font>
-                  <Font size="63.0" />
-               </font>
-            </Text>
-      </children>
+            <ImageView fx:id="playerCard2" fitHeight="120.0" fitWidth="85.0" layoutX="10.0" layoutY="10.0"
+                       visible="false">
+                <Image url="@/card.images/back.png"/>
+            </ImageView>
+            <ImageView fx:id="playerCard3" fitHeight="120.0" fitWidth="85.0" layoutX="95.0" layoutY="10.0">
+                <Image url="@/card.images/back.png"/>
+            </ImageView>
+            <ImageView fx:id="playerCard4" fitHeight="120.0" fitWidth="85.0" layoutX="180.0" layoutY="10.0">
+                <Image url="@/card.images/back.png"/>
+            </ImageView>
+            <ImageView fx:id="playerCard5" fitHeight="120.0" fitWidth="85.0" layoutX="265.0" layoutY="10.0"
+                       visible="false">
+                <Image url="@/card.images/back.png"/>
+            </ImageView>
+            <ImageView fx:id="playerCard6" fitHeight="120.0" fitWidth="85.0" layoutX="350.0" layoutY="10.0"
+                       visible="false">
+                <Image url="@/card.images/back.png"/>
+            </ImageView>
+        </HBox>
+        <HBox layoutX="66.0" layoutY="45.0" prefHeight="100.0" prefWidth="200.0">
+            <ImageView fx:id="dealerCard1" fitHeight="120.0" fitWidth="85.0" visible="false">
+                <Image url="@/card.images/back.png"/>
+            </ImageView>
+            <ImageView fx:id="dealerCard2" fitHeight="120.0" fitWidth="85.0" layoutX="10.0" layoutY="10.0"
+                       visible="false">
+                <Image url="@/card.images/back.png"/>
+            </ImageView>
+            <ImageView fx:id="dealerCard3" fitHeight="120.0" fitWidth="85.0" layoutX="95.0" layoutY="10.0">
+                <Image url="@/card.images/back.png"/>
+            </ImageView>
+            <ImageView fx:id="dealerCard4" fitHeight="120.0" fitWidth="85.0" layoutX="180.0" layoutY="10.0">
+                <Image url="@/card.images/back.png"/>
+            </ImageView>
+            <ImageView fx:id="dealerCard5" fitHeight="120.0" fitWidth="85.0" layoutX="265.0" layoutY="10.0"
+                       visible="false">
+                <Image url="@/card.images/back.png"/>
+            </ImageView>
+            <ImageView fx:id="dealerCard6" fitHeight="120.0" fitWidth="85.0" layoutX="350.0" layoutY="10.0"
+                       visible="false">
+                <Image url="@/card.images/back.png"/>
+            </ImageView>
+        </HBox>
+        <Button fx:id="againButton" alignment="CENTER" layoutX="471.0" layoutY="178.0" mnemonicParsing="false"
+                onAction="#reset" text="GO AGAIN?" visible="false">
+            <font>
+              <Font size="20.0"/>
+            </font>
+            <cursor>
+              <Cursor fx:constant="HAND"/>
+            </cursor>
+        </Button>
+        <Text fx:id="bustText" fill="RED" layoutX="167.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="YOU BUST!" visible="false">
+            <font>
+              <Font size="63.0"/>
+            </font>
+        </Text>
+        <Text fx:id="LoseText" fill="RED" layoutX="168.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="YOU Lose!" visible="false">
+            <font>
+              <Font size="63.0"/>
+            </font>
+        </Text>
     </AnchorPane>
-  </children>
 </VBox>

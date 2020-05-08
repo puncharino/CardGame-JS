@@ -15,7 +15,7 @@ public class Player {
     }
 
 
-    void hit () {
+    public void hit () {
         hand.add (mainDeck.drawCard());
     }
 

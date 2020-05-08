@@ -3,16 +3,20 @@ package CardGame;
 import java.util.Random;
 
 public class BlackJack {
-	 static int playerBet = 0;
-	 static int playerWinnings = 0;
-	 boolean playerTurn = true;
-	 static boolean dealerWin = false;
-	 static Random r = new Random();
-	 //104 for 21 bug
-	 static Deck newDeck = new Deck(r);
-	 static Player player = new Player(newDeck);
-	 static Dealer dealer = new Dealer(newDeck);
-	 static boolean gameState = true;
+	//TODO FIX ALL OF THESE
+	//TODO REDO ENTIRE BLACKJACK CLASS
+	//TODO ORGANIZE PROJECT STRUCTURE
+	//TODO IMPROVE GAME FLOW
+		static int playerBet = 0;
+		static int playerWinnings = 0;
+		boolean playerTurn = true;
+		static boolean dealerWin = false;
+		static Random r = new Random(104);
+		//104 for 21 bug
+		static Deck newDeck = new Deck(r);
+		public static Player player = new Player(newDeck);
+		public static Dealer dealer = new Dealer(newDeck);
+		static boolean gameState = true;
 
 	public static void Start() {
 
