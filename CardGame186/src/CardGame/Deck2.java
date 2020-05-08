@@ -1,5 +1,7 @@
 package yjohnson;
 
+import CardGame.Card;
+
 import java.util.ArrayList;
 import java.util.Random;
 

@@ -76,39 +76,39 @@
             </Button>
             <ImageView fx:id="dealerCard1" fitHeight="120.0" fitWidth="85.0" layoutX="137.0" layoutY="45.0" visible="false">
                <image>
-                  <Image url="@/resources/card.images/back.png" />
+                  <Image url="@/card.images/back.png" />
                </image>
             </ImageView>
             <HBox layoutX="65.0" layoutY="238.0" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <ImageView fx:id="playerCard1" fitHeight="120.0" fitWidth="85.0" visible="false">
                      <image>
-                        <Image url="@/resources/card.images/back.png" />
+                        <Image url="@/card.images/back.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="playerCard2" fitHeight="120.0" fitWidth="85.0" layoutX="10.0" layoutY="10.0" visible="false">
                      <image>
-                        <Image url="@/resources/card.images/back.png" />
+                        <Image url="@/card.images/back.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="playerCard3" fitHeight="120.0" fitWidth="85.0" layoutX="95.0" layoutY="10.0">
                      <image>
-                        <Image url="@/resources/card.images/back.png" />
+                        <Image url="@/card.images/back.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="playerCard4" fitHeight="120.0" fitWidth="85.0" layoutX="180.0" layoutY="10.0">
                      <image>
-                        <Image url="@/resources/card.images/back.png" />
+                        <Image url="@/card.images/back.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="playerCard5" fitHeight="120.0" fitWidth="85.0" layoutX="265.0" layoutY="10.0" visible="false">
                      <image>
-                        <Image url="@null" />
+                        <Image url="@/card.images/back.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="playerCard6" fitHeight="120.0" fitWidth="85.0" layoutX="350.0" layoutY="10.0" visible="false">
                      <image>
-                        <Image url="@/resources/card.images/back.png" />
+                        <Image url="@/card.images/back.png" />
                      </image>
                   </ImageView>
                </children>
@@ -117,32 +117,32 @@
                <children>
                   <ImageView fx:id="dealerCard1" fitHeight="120.0" fitWidth="85.0" visible="false">
                      <image>
-                        <Image url="@/resources/card.images/back.png" />
+                        <Image url="@/card.images/back.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="dealerCard2" fitHeight="120.0" fitWidth="85.0" layoutX="10.0" layoutY="10.0" visible="false">
                      <image>
-                        <Image url="@/resources/card.images/back.png" />
+                        <Image url="@/card.images/back.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="dealerCard3" fitHeight="120.0" fitWidth="85.0" layoutX="95.0" layoutY="10.0">
                      <image>
-                        <Image url="@/resources/card.images/back.png" />
+                        <Image url="@/card.images/back.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="dealerCard4" fitHeight="120.0" fitWidth="85.0" layoutX="180.0" layoutY="10.0">
                      <image>
-                        <Image url="@/resources/card.images/back.png" />
+                        <Image url="@/card.images/back.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="dealerCard5" fitHeight="120.0" fitWidth="85.0" layoutX="265.0" layoutY="10.0" visible="false">
                      <image>
-                        <Image url="@/resources/card.images/back.png" />
+                        <Image url="@/card.images/back.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="dealerCard6" fitHeight="120.0" fitWidth="85.0" layoutX="350.0" layoutY="10.0" visible="false">
                      <image>
-                        <Image url="@/resources/card.images/back.png" />
+                        <Image url="@/card.images/back.png" />
                      </image>
                   </ImageView>
                </children>

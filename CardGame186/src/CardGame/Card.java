@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Card {
 	//a card needs to have these be constant throughout its existence, should never change
     private final int rank, suit;
-    private final String cardImageLocation = "resources/card.images/";
+    private final String cardImageLocation = "CardGame186/resources/card.images/";
     private final File cardBackside = new File(cardImageLocation + "back.png");
     
     //these shouldn't change
