@@ -9,8 +9,6 @@ public class Dealer extends Player {
     public Dealer(Deck mainDeck) {
         super(mainDeck);
     }
-
-
     /**
      * Overrides the getHandTotal method. Only returns the value of the visible cards that the dealer has, simplifies
      * the Score element
@@ -51,5 +49,9 @@ public class Dealer extends Player {
         } else {
             return super.getHand();
         }
+    }
+
+    public void setDealerTurn(boolean dealerTurn) {
+        this.dealerTurn = dealerTurn;
     }
 }

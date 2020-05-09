@@ -1,89 +1,52 @@
 package CardGame;
 
-import java.util.Random;
 
 public class BlackJack {
-	//TODO FIX ALL OF THESE
-	//TODO REDO ENTIRE BLACKJACK CLASS
-	//TODO ORGANIZE PROJECT STRUCTURE
-	//TODO IMPROVE GAME FLOW
-		static int playerBet = 0;
-		static int playerWinnings = 0;
-		boolean playerTurn = true;
-		static boolean dealerWin = false;
-		static Random r = new Random(104);
-		//104 for 21 bug
-		static Deck newDeck = new Deck(r);
-		public static Player player = new Player(newDeck);
-		public static Dealer dealer = new Dealer(newDeck);
-		static boolean gameState = true;
 
-	public static void Start() {
+    /* BlackJack can be static; there will be one player and one dealer at any given point in time (for version 0.1) */
+    private static Deck deckBJ = new Deck();
+    private static Player p1 = new Player(deckBJ);
+    private static Dealer dealer = new Dealer(deckBJ);
 
-		while (dealer.getHandTotal() < 21 && !dealerWin && gameState) {
-			if (dealer.getHandTotal() < 17) {
-				dealer.hit();
-				// BasicFXMLController.dealerUpdate();
+    public static boolean gameState = true;
+    public static boolean dealerWin = false;
 
-			} else if (dealer.getHandTotal() > player.getHandTotal()) {
-				dealerWin = true;
-				gameState = false;
-			} else if (dealer.getHandTotal() < player.getHandTotal()) {
-				dealerWin = false;
-				gameState = false;
 
-				playerWinnings = playerBet * 2;
-			} else if (player.getHandTotal() == dealer.getHandTotal()) {
-				playerWinnings = playerBet;
-				dealerWin = false;
-				gameState = false;
-			}
-		}
+    /* A new instance of the game BlackJack */
+    public BlackJack() {
+        restartBJ();
+    }
 
-	}
+    public static boolean hasBlackJack (Player entity) {
+        if (entity.getHandTotal() == 21) {
+            return true;
+        }
+        return false;
+    }
 
-	public void bet(int bet) {
-		playerBet = bet;
-	}
+    public static boolean hasBusted (Player entity) {
+        if (entity.getHandTotal() > 21) {
+            return true;
+        }
+        return false;
+    }
 
-	public void playerHit() {
-		if (playerTurn && player.getHandTotal() < 21) {
-			player.hit();
-		} else {
-			playerTurn = false;
-		}
-	}
+    public static void restartBJ () {
+        deckBJ.reset();
+        deckBJ.shuffle();
 
-	public void playerStand() {
-		playerTurn = false;
-	}
+        /* The player and dealer must draw two cards at the start of the game. */
+        for (int i = 0; i < 2; ++i) {
+            /* Player first, dealer second */
+            p1.hit();
+            dealer.hit();
+        }
+    }
 
-	public static int getPlayerScore() {
-		return player.getHandTotal();
-	}
-
-	public static int getDealerScore() {
-		return dealer.getHandTotal();
-	}
-
-	public static void dealStartingCards() {
-		newDeck.shuffle();
-		for (int i = 0; i < 2; i++) {
-			player.hit();
-			dealer.hit();
-		}
-	}
-
-	public static boolean isBust() {
-		if (player.getHandTotal() > 21) {
-			return true;
-		} else
-			return false;
-
-	}
-	
-	public static Player getPlayer() {
-		return player;
-	}
-
+    public static Player getPlayer() {
+        return p1;
+    }
+    public static Dealer getDealer() {
+        return dealer;
+    }
 }

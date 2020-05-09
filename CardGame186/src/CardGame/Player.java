@@ -9,9 +9,7 @@ public class Player {
 
     // Creates a player with two initial cards in hand from the deck
     public Player (Deck mainDeck) {
-        //for (int i = 0; i < 2; ++i) {
-            this.mainDeck = mainDeck;
-            //hit();
+        this.mainDeck = mainDeck;
     }
 
 

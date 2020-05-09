@@ -10,8 +10,8 @@ public class Deck {
     /**
      * The deck of cards.
      */
-    private static ArrayList<Card> Deck;
-    private static ArrayList<Card> PlayedCards = new ArrayList<>();
+    private ArrayList<Card> Deck;
+    private ArrayList<Card> PlayedCards = new ArrayList<>();
 
     private Random r;
 
@@ -125,7 +125,7 @@ public class Deck {
      * the oldest.
      * @return the cards that have been played from this deck.
      */
-    public static ArrayList<Card> getPlayedCards() {
+    public ArrayList<Card> getPlayedCards() {
         return PlayedCards;
     }
     /**
