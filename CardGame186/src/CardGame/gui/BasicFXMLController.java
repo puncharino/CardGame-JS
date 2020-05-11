@@ -7,6 +7,7 @@ package CardGame.gui;
 import CardGame.BlackJack;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -43,7 +44,7 @@ public class BasicFXMLController {
 	private Text winText; // Value injected by FXMLLoader
 
 	@FXML // fx:id="LoseText"
-	private Text LoseText; // Value injected by FXMLLoader
+	private Text loseText; // Value injected by FXMLLoader
 
 	@FXML // fx:id="bustText"
 	private Text bustText; // Value injected by FXMLLoader
@@ -93,50 +94,71 @@ public class BasicFXMLController {
 	private int playerTimesHit = 0;
 	private int dealerTimesHit = 0;
 	private BlackJack bj;
+	private Exception UnsupportedOperationException;
+
 	@FXML
-	public void HitAction(ActionEvent event) {
+	public void HitAction(ActionEvent event) throws Exception {
+		//TODO LOG
 		System.out.println("You hit");
 		playerTimesHit++;
-		getPlayer().hit();
 
-		if (playerTimesHit == 1) {
-			playerCard5.setVisible(true);
-			playerCard5.setImage(getPlayer().getHand().get(2).getCardFace());
+		switch (playerHit(BlackJack.getPlayer())) {
+			case 1:
+				playerCard5.setVisible(true);
+				playerCard5.setImage(getPlayer().getHand().get(2).getCardFace());
+				break;
+			case 2:
+				playerCard2.setVisible(true);
+				playerCard2.setImage(getPlayer().getHand().get(3).getCardFace());
+				break;
+			case 3:
+				playerCard6.setVisible(true);
+				playerCard6.setImage(getPlayer().getHand().get(4).getCardFace());
+				break;
+			case 4:
+				playerCard1.setVisible(true);
+				playerCard1.setImage(getPlayer().getHand().get(5).getCardFace());
+				break;
+			default:
+				System.err.println("More than 4 cards drawn is not currently supported");
+				throw UnsupportedOperationException;
 		}
 
-		if (playerTimesHit == 2) {
-			playerCard2.setVisible(true);
-			playerCard2.setImage(getPlayer().getHand().get(3).getCardFace());
-		}
+		/* Sets the visible score to the hand's total */
+		playerScoreValue.setText(Integer.toString(getPlayer().getHandTotal()));
 
-		if (playerTimesHit == 3) {
-			playerCard6.setVisible(true);
-			playerCard6.setImage(getPlayer().getHand().get(4).getCardFace());
-		}
-
-		if (playerTimesHit == 4) {
-			playerCard1.setVisible(true);
-			playerCard1.setImage(getPlayer().getHand().get(5).getCardFace());
-		}
-
-		playerScoreValue.setText("" + getPlayer().getHandTotal());
-
-		if (bj.hasBusted(getPlayer())) {
-			bustText.setVisible(true);
-//			againButton.setVisible(true);
-			hitButton.setDisable(true);
-			standButton.setDisable(true);
-		}
-		// playerScoreValue = Player.getPlayerValue();
-
-		if (getPlayer().getHandTotal() > 20) {
+		if (hasBusted(getPlayer())) {
+			gameEnd(endState.BUST);
+		} else if (getPlayer().getHandTotal() > 20) {
 			hitButton.setDisable(true);
 		}
 	}
 
+	private enum endState {
+		WIN,LOSE,BUST
+	}
+
+	void gameEnd (endState state) {
+		switch (state) {
+			case WIN:
+				winText.setVisible(true);
+				break;
+			case LOSE:
+				loseText.setVisible(true);
+				break;
+			case BUST:
+				bustText.setVisible(true);
+				break;
+		}
+
+		/* Finally, disable all other buttons */
+		hitButton.setDisable(true);
+		standButton.setDisable(true);
+	}
+
 	@FXML
 	void StandAction(ActionEvent event) {
-
+		//TODO LOG
 		System.out.println("You stand");
 		getDealer().setDealerTurn(true);
 
@@ -191,11 +213,10 @@ public class BasicFXMLController {
 			winText.setVisible(true);
 
 		} else {
-			LoseText.setVisible(true);
+			loseText.setVisible(true);
 		}
 		hitButton.setDisable(true);
 		standButton.setDisable(true);
-//		againButton.setVisible(true);
 	}
 
 	@FXML
@@ -205,17 +226,16 @@ public class BasicFXMLController {
 			winText.setVisible(true);
 			hitButton.setDisable(true);
 			standButton.setDisable(true);
-//			againButton.setVisible(true);
 		}
 
 		// set initially drawn card images
 		playerCard3.setImage(getPlayer().getHand().get(0).getCardFace());
 		playerCard4.setImage(getPlayer().getHand().get(1).getCardFace());
 
-		dealerCard3.setImage(getPlayer().getHand().get(0).getCardFace());
+		dealerCard3.setImage(getDealer().getHand().get(0).getCardFace());
 
-		dealerScoreValue.setText("" + getDealer().getHandTotal());
-		playerScoreValue.setText("" + getPlayer().getHandTotal());
+		dealerScoreValue.setText(Integer.toString(getDealer().getHandTotal()));
+		playerScoreValue.setText(Integer.toString(getPlayer().getHandTotal()));
 
 		startButton.setVisible(false);
 		standButton.setVisible(true);
@@ -228,7 +248,8 @@ public class BasicFXMLController {
 		
 		System.out.println("Resetting...");
 		BlackJack.restartBJ();
-		StartGame();
+		//TODO this is very hard
+		System.err.println("This is not yet implemented...");
 	}
 
 	@FXML // This method is called by the FXMLLoader when initialization is complete

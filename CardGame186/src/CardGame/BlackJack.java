@@ -1,12 +1,14 @@
 package CardGame;
 
-
 public class BlackJack {
 
     /* BlackJack can be static; there will be one player and one dealer at any given point in time (for version 0.1) */
-    private static Deck deckBJ = new Deck();
-    private static Player p1 = new Player(deckBJ);
-    private static Dealer dealer = new Dealer(deckBJ);
+    private static final Deck deckBJ = new Deck();
+    private static final Player p1 = new Player(deckBJ);
+    private static final Dealer dealer = new Dealer(deckBJ);
+
+    // TODO implement multiple hands with multiple Player instances
+    private static int pNumHit = 0;
 
     public static boolean gameState = true;
     public static boolean dealerWin = false;
@@ -17,18 +19,18 @@ public class BlackJack {
         restartBJ();
     }
 
+    public static int playerHit (Player p) {
+        p.hit();
+        ++pNumHit;
+        return pNumHit;
+    }
+
     public static boolean hasBlackJack (Player entity) {
-        if (entity.getHandTotal() == 21) {
-            return true;
-        }
-        return false;
+        return entity.getHandTotal() == 21;
     }
 
     public static boolean hasBusted (Player entity) {
-        if (entity.getHandTotal() > 21) {
-            return true;
-        }
-        return false;
+        return entity.getHandTotal() > 21;
     }
 
     public static void restartBJ () {

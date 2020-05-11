@@ -119,7 +119,7 @@
               <Font size="63.0" />
             </font>
         </Text>
-        <Text fx:id="LoseText" fill="RED" layoutX="168.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YOU Lose!" visible="false">
+        <Text fx:id="loseText" fill="RED" layoutX="168.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YOU Lose!" visible="false">
             <font>
               <Font size="63.0" />
             </font>
