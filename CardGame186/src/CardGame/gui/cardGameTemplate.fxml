@@ -63,9 +63,6 @@
               <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <ImageView fx:id="dealerCard" fitHeight="120.0" fitWidth="85.0" layoutX="137.0" layoutY="45.0" visible="false">
-            <Image url="@/card.images/back.png" />
-        </ImageView>
         <HBox layoutX="65.0" layoutY="238.0" prefHeight="100.0" prefWidth="200.0">
             <ImageView fx:id="playerCard1" fitHeight="120.0" fitWidth="85.0" visible="false" />
             <ImageView fx:id="playerCard2" fitHeight="120.0" fitWidth="85.0" layoutX="10.0" layoutY="10.0" visible="false" />

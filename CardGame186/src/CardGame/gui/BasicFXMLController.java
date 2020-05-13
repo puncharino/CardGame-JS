@@ -5,7 +5,6 @@
 package CardGame.gui;
 
 import CardGame.BlackJack;
-import CardGame.Card;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,7 +15,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static CardGame.BlackJack.*;
-import static java.lang.Thread.sleep;
 
 public class BasicFXMLController {
 
@@ -91,11 +89,9 @@ public class BasicFXMLController {
 
 	@FXML // fx:id="playerCard6"
 	private ImageView dealerCard6; // Value injected by FXMLLoader
+	private final Throwable Exception = new UnsupportedOperationException("More than 4 cards drawn is not currently supported");
 
-	private int playerTimesHit = 0;
-	private int dealerTimesHit = 0;
-	private BlackJack bj;
-	private Exception UnsupportedOperationException;
+
 
 	private enum endState {
 		WIN,LOSE,BUST
@@ -104,11 +100,9 @@ public class BasicFXMLController {
 	/**
 	 * Performs a hit with the player, which adds a card to their visible hand and updates their scores. Checks for
 	 * a player bust.
-	 * @param event
-	 * @throws Exception
 	 */
 	@FXML
-	public void HitAction(ActionEvent event) throws Exception {
+	public void HitAction() throws Throwable {
 		//TODO LOG
 		System.out.println("You hit");
 
@@ -130,8 +124,7 @@ public class BasicFXMLController {
 				playerCard1.setImage(getPlayer().getHand().get(5).getCardFace());
 				break;
 			default:
-				System.err.println("More than 4 cards drawn is not currently supported");
-				throw UnsupportedOperationException;
+				throw Exception;
 		}
 
 		/* Sets the visible score to the hand's total */
@@ -166,7 +159,7 @@ public class BasicFXMLController {
 	}
 
 	@FXML
-	void StandAction(ActionEvent event) throws InterruptedException {
+	void StandAction() throws InterruptedException {
 		//TODO LOG
 		System.out.println("You stand");
 		getDealer().setDealerTurn(true);
@@ -252,7 +245,7 @@ public class BasicFXMLController {
 
 	@FXML // This method is called by the FXMLLoader when initialization is complete
 	void initialize() {
-		bj = new BlackJack();
+		restartBJ();
 
 		playerCard3.setImage(getPlayer().getHand().get(0).getCardBack());
 		playerCard4.setImage(getPlayer().getHand().get(1).getCardBack());

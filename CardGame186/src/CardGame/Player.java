@@ -6,7 +6,7 @@ public class Player {
     public int numHit = -2;
 
     ArrayList<Card> hand = new ArrayList<>();
-    private Deck mainDeck; // Should be the same as main deck in game
+    private final Deck mainDeck; // Should be the same as main deck in game
 
     // Creates a player with two initial cards in hand from the deck
     public Player (Deck mainDeck) {

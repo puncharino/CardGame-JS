@@ -5,9 +5,9 @@ import javax.imageio.ImageIO;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 
 public class Card {
 
@@ -67,13 +67,14 @@ public class Card {
             String pathToImage = cardImageLocation + this.returnRankValue() + "." + this.returnSuitValue() + ".png";
 
             try {                   // Try assigning the face image
-                cardFace = SwingFXUtils.toFXImage(ImageIO.read(getClass().getClassLoader().getResource(pathToImage)),null);
+                cardFace = SwingFXUtils.toFXImage(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(pathToImage))),null);
             } catch (IOException e) {
                 System.err.printf("Error: Resource not found at: %s \n", pathToImage);
                 e.printStackTrace();
             } finally {             // If successful...
                 try {               // Try assigning the back image
-                	cardBack = SwingFXUtils.toFXImage(ImageIO.read(cardBackside),null);
+                    assert cardBackside != null;
+                    cardBack = SwingFXUtils.toFXImage(ImageIO.read(cardBackside),null);
                 } catch (IOException e) {
                     System.err.printf("Error: Resource not found at: %s \n", cardBackside.toString());
                     e.printStackTrace();
@@ -81,6 +82,7 @@ public class Card {
             }
         } else {                    // If the card is a Joker
             try {                   // Try assigning the same back.png to both sides (Joker exclusive)
+                assert cardBackside != null;
                 cardFace = SwingFXUtils.toFXImage(ImageIO.read(cardBackside),null);
                 cardBack = SwingFXUtils.toFXImage(ImageIO.read(cardBackside),null);
             } catch (IOException e) {
@@ -90,14 +92,6 @@ public class Card {
         }
     }
 
-    /**
-     * Returns a string with the rank of the card.
-     * @return string of the rank
-     */
-    public String returnRank() {
-    	return ranks[rank];
-    } 
-    
     /**
      * Returns a integer value for the rank of the card.
      * RANK:
@@ -110,14 +104,6 @@ public class Card {
      */
     public int returnRankValue() {
     	return rank;
-    }  
-    
-    /**
-     * Returns a string with the suit of the card.
-     * @return string of the suit
-     */
-    public String returnSuit() {
-    	return suits[suit];
     }
 
     /**
@@ -143,27 +129,6 @@ public class Card {
     		return (ranks[rank] + " of " + suits[suit]);
     	} else {return ranks[rank];}
     	
-    }
-    
-    /**
-     * Checks to see which card is higher tiered in both suits and ranks, compared to another card
-     * @param that another card to compare 
-     * @return returns 1 if this ("the caller" card) wins, -1 if that ("the called" card) wins, and 0 if they are equivalent
-     */
-    public int comparedTo(Card that) {
-        if (this.suit < that.suit) {
-            return -1;
-        }
-        if (this.suit > that.suit) {
-            return 1;
-        }
-        if (this.rank < that.rank) {
-            return -1;
-        }
-        if (this.rank > that.rank) {
-            return 1;
-        }
-        return 0;
     }
 
 }
