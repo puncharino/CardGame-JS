@@ -25,19 +25,19 @@
               <Font name="System Bold" size="20.0" />
             </font>
         </Text>
-        <Text fill="WHITE" layoutX="255.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dealer's Hand">
+        <Text fill="WHITE" layoutX="255.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dealer's Hand">
             <font>
               <Font name="System Bold" size="20.0" />
             </font>
         </Text>
-        <Text fill="WHITE" layoutX="483.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Score:">
+        <Text fill="WHITE" layoutX="11.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Score:">
             <font>
               <Font name="System Bold" size="20.0" />
             </font>
         </Text>
-        <Text fx:id="playerScoreValue" fill="WHITE" layoutX="594.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="??">
+        <Text fx:id="playerScoreValue" fill="WHITE" layoutX="116.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="??" textAlignment="CENTER" wrappingWidth="39.89453125">
             <font>
-              <Font size="30.0" />
+              <Font name="System Bold" size="22.0" />
             </font>
         </Text>
         <Text fx:id="winText" fill="WHITE" layoutX="163.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YOU WIN!" visible="false">
@@ -45,14 +45,14 @@
               <Font size="63.0" />
             </font>
         </Text>
-        <Text fill="WHITE" layoutX="453.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dealer's Score:">
+        <Text fill="WHITE" layoutX="447.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dealer's Score:">
             <font>
               <Font name="System Bold" size="20.0" />
             </font>
         </Text>
-        <Text fx:id="dealerScoreValue" fill="WHITE" layoutX="596.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="??">
+        <Text fx:id="dealerScoreValue" fill="WHITE" layoutX="583.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="??" textAlignment="CENTER" wrappingWidth="39.89452362060547">
             <font>
-              <Font size="30.0" />
+              <Font name="System Bold" size="22.0" />
             </font>
         </Text>
         <Button fx:id="startButton" layoutX="248.0" layoutY="178.0" mnemonicParsing="false" onAction="#StartGame" text="START GAME">
@@ -67,44 +67,20 @@
             <Image url="@/card.images/back.png" />
         </ImageView>
         <HBox layoutX="65.0" layoutY="238.0" prefHeight="100.0" prefWidth="200.0">
-            <ImageView fx:id="playerCard1" fitHeight="120.0" fitWidth="85.0" visible="false">
-                <Image url="@/card.images/back.png" />
-            </ImageView>
-            <ImageView fx:id="playerCard2" fitHeight="120.0" fitWidth="85.0" layoutX="10.0" layoutY="10.0" visible="false">
-                <Image url="@/card.images/back.png" />
-            </ImageView>
-            <ImageView fx:id="playerCard3" fitHeight="120.0" fitWidth="85.0" layoutX="95.0" layoutY="10.0">
-                <Image url="@/card.images/back.png" />
-            </ImageView>
-            <ImageView fx:id="playerCard4" fitHeight="120.0" fitWidth="85.0" layoutX="180.0" layoutY="10.0">
-                <Image url="@/card.images/back.png" />
-            </ImageView>
-            <ImageView fx:id="playerCard5" fitHeight="120.0" fitWidth="85.0" layoutX="265.0" layoutY="10.0" visible="false">
-                <Image url="@/card.images/back.png" />
-            </ImageView>
-            <ImageView fx:id="playerCard6" fitHeight="120.0" fitWidth="85.0" layoutX="350.0" layoutY="10.0" visible="false">
-                <Image url="@/card.images/back.png" />
-            </ImageView>
+            <ImageView fx:id="playerCard1" fitHeight="120.0" fitWidth="85.0" visible="false" />
+            <ImageView fx:id="playerCard2" fitHeight="120.0" fitWidth="85.0" layoutX="10.0" layoutY="10.0" visible="false" />
+            <ImageView fx:id="playerCard3" fitHeight="120.0" fitWidth="85.0" layoutX="95.0" layoutY="10.0" />
+            <ImageView fx:id="playerCard4" fitHeight="120.0" fitWidth="85.0" layoutX="180.0" layoutY="10.0" />
+            <ImageView fx:id="playerCard5" fitHeight="120.0" fitWidth="85.0" layoutX="265.0" layoutY="10.0" visible="false" />
+            <ImageView fx:id="playerCard6" fitHeight="120.0" fitWidth="85.0" layoutX="350.0" layoutY="10.0" visible="false" />
         </HBox>
         <HBox layoutX="66.0" layoutY="45.0" prefHeight="100.0" prefWidth="200.0">
-            <ImageView fx:id="dealerCard1" fitHeight="120.0" fitWidth="85.0" visible="false">
-                <Image url="@/card.images/back.png" />
-            </ImageView>
-            <ImageView fx:id="dealerCard2" fitHeight="120.0" fitWidth="85.0" layoutX="10.0" layoutY="10.0" visible="false">
-                <Image url="@/card.images/back.png" />
-            </ImageView>
-            <ImageView fx:id="dealerCard3" fitHeight="120.0" fitWidth="85.0" layoutX="95.0" layoutY="10.0">
-                <Image url="@/card.images/back.png" />
-            </ImageView>
-            <ImageView fx:id="dealerCard4" fitHeight="120.0" fitWidth="85.0" layoutX="180.0" layoutY="10.0">
-                <Image url="@/card.images/back.png" />
-            </ImageView>
-            <ImageView fx:id="dealerCard5" fitHeight="120.0" fitWidth="85.0" layoutX="265.0" layoutY="10.0" visible="false">
-                <Image url="@/card.images/back.png" />
-            </ImageView>
-            <ImageView fx:id="dealerCard6" fitHeight="120.0" fitWidth="85.0" layoutX="350.0" layoutY="10.0" visible="false">
-                <Image url="@/card.images/back.png" />
-            </ImageView>
+            <ImageView fx:id="dealerCard1" fitHeight="120.0" fitWidth="85.0" visible="false" />
+            <ImageView fx:id="dealerCard2" fitHeight="120.0" fitWidth="85.0" layoutX="10.0" layoutY="10.0" visible="false" />
+            <ImageView fx:id="dealerCard3" fitHeight="120.0" fitWidth="85.0" layoutX="95.0" layoutY="10.0" />
+            <ImageView fx:id="dealerCard4" fitHeight="120.0" fitWidth="85.0" layoutX="180.0" layoutY="10.0" />
+            <ImageView fx:id="dealerCard5" fitHeight="120.0" fitWidth="85.0" layoutX="265.0" layoutY="10.0" visible="false" />
+            <ImageView fx:id="dealerCard6" fitHeight="120.0" fitWidth="85.0" layoutX="350.0" layoutY="10.0" visible="false" />
         </HBox>
         <Button fx:id="againButton" alignment="CENTER" layoutX="471.0" layoutY="178.0" mnemonicParsing="false" onAction="#reset" text="GO AGAIN?" visible="false">
             <font>
@@ -124,6 +100,5 @@
               <Font size="63.0" />
             </font>
         </Text>
-      <Button layoutX="40.0" layoutY="188.0" mnemonicParsing="false" onAction="#reset" text="RESET" />
     </AnchorPane>
 </VBox>

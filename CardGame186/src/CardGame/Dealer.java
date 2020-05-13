@@ -23,11 +23,8 @@ public class Dealer extends Player {
             if (e.returnRankValue() >= 10) {
                 return  10;
             } else if (e.returnRankValue() == 1) {
-                if (super.getHandTotal()+11 > 21) {
-                    return 1;
-                } else {
-                    return 11;
-                }
+                /* The dealer score should not give the player an indication of what the non-visible card might be */
+                return 11;      /* Will always return 11 if it is not the dealer's turn yet. */
             } else return e.returnRankValue();
         }
         return super.getHandTotal();

@@ -1,5 +1,7 @@
 package CardGame;
 
+import java.util.Random;
+
 public class BlackJack {
 
     /* BlackJack can be static; there will be one player and one dealer at any given point in time (for version 0.1) */
@@ -8,7 +10,6 @@ public class BlackJack {
     private static final Dealer dealer = new Dealer(deckBJ);
 
     // TODO implement multiple hands with multiple Player instances
-    private static int pNumHit = 0;
 
     public static boolean gameState = true;
     public static boolean dealerWin = false;
@@ -21,8 +22,7 @@ public class BlackJack {
 
     public static int playerHit (Player p) {
         p.hit();
-        ++pNumHit;
-        return pNumHit;
+        return p.numHit;
     }
 
     public static boolean hasBlackJack (Player entity) {
@@ -42,6 +42,14 @@ public class BlackJack {
             /* Player first, dealer second */
             p1.hit();
             dealer.hit();
+        }
+    }
+
+    public static boolean dealerWin(Player p) {
+        if (dealer.getHandTotal() <= p.getHandTotal()) {
+            return false;
+        } else {
+            return true;
         }
     }
 

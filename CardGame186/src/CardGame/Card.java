@@ -7,20 +7,21 @@ import javafx.scene.image.Image;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class Card {
 
 	//a card needs to have these be constant throughout its existence, should never change
     private final int rank, suit;
-    private final String cardImageLocation = "CardGame186/resources/card.images/";
-    private final File cardBackside = new File(cardImageLocation + "back.png");
+    private final String cardImageLocation = "card.images/";
+    private final URL cardBackside = getClass().getClassLoader().getResource(cardImageLocation + "back.png");
     
     //these shouldn't change
     public static final String [] ranks = {"Joker", "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"}; // there is no zero card rank, make it null
     public static final String [] suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
 
     private Image cardFace = null;
-    private static Image cardBack = null;
+    private Image cardBack = null;
 
     public Image getCardFace() {
         return cardFace;
@@ -66,7 +67,7 @@ public class Card {
             String pathToImage = cardImageLocation + this.returnRankValue() + "." + this.returnSuitValue() + ".png";
 
             try {                   // Try assigning the face image
-                cardFace = SwingFXUtils.toFXImage(ImageIO.read(new File(pathToImage)),null);
+                cardFace = SwingFXUtils.toFXImage(ImageIO.read(getClass().getClassLoader().getResource(pathToImage)),null);
             } catch (IOException e) {
                 System.err.printf("Error: Resource not found at: %s \n", pathToImage);
                 e.printStackTrace();
@@ -165,19 +166,4 @@ public class Card {
         return 0;
     }
 
-    /**
-     * Returns an array of the card's face and back images.
-     * @return array with cardFace at index 0 and cardBack at index 1.
-     */
-    public Image [] returnCardImages () {
-        return new Image[]{cardFace, cardBack};
-    }
-
-    /**
-     * Verifies whether or not the card is a Joker card (unusable)
-     * @return true if Joker, false if not
-     */
-    public boolean isJoker () {
-        return this.rank == 0;
-    }
 }

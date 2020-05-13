@@ -5,9 +5,9 @@
 package CardGame.gui;
 
 import CardGame.BlackJack;
+import CardGame.Card;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -16,6 +16,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static CardGame.BlackJack.*;
+import static java.lang.Thread.sleep;
 
 public class BasicFXMLController {
 
@@ -96,11 +97,20 @@ public class BasicFXMLController {
 	private BlackJack bj;
 	private Exception UnsupportedOperationException;
 
+	private enum endState {
+		WIN,LOSE,BUST
+	}
+
+	/**
+	 * Performs a hit with the player, which adds a card to their visible hand and updates their scores. Checks for
+	 * a player bust.
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	public void HitAction(ActionEvent event) throws Exception {
 		//TODO LOG
 		System.out.println("You hit");
-		playerTimesHit++;
 
 		switch (playerHit(BlackJack.getPlayer())) {
 			case 1:
@@ -127,16 +137,15 @@ public class BasicFXMLController {
 		/* Sets the visible score to the hand's total */
 		playerScoreValue.setText(Integer.toString(getPlayer().getHandTotal()));
 
-		if (hasBusted(getPlayer())) {
+		if (getPlayer().getHandTotal() == 21) {
+			gameEnd(endState.WIN);
+		} else if (hasBusted(getPlayer())) {
 			gameEnd(endState.BUST);
-		} else if (getPlayer().getHandTotal() > 20) {
+		} else if (getPlayer().getHandTotal() > 21) {
 			hitButton.setDisable(true);
 		}
 	}
 
-	private enum endState {
-		WIN,LOSE,BUST
-	}
 
 	void gameEnd (endState state) {
 		switch (state) {
@@ -157,7 +166,7 @@ public class BasicFXMLController {
 	}
 
 	@FXML
-	void StandAction(ActionEvent event) {
+	void StandAction(ActionEvent event) throws InterruptedException {
 		//TODO LOG
 		System.out.println("You stand");
 		getDealer().setDealerTurn(true);
@@ -165,58 +174,47 @@ public class BasicFXMLController {
 		// dealerCard3.setImage(BlackJack.dealer.getHand().get(0).cardFace);
 		dealerCard4.setImage(getDealer().getHand().get(1).getCardFace());
 
-//    	BlackJack.Start();
-
-		//dealer draws
-		while (getDealer().getHandTotal() < 22 && !dealerWin && gameState) {
+		/* FIX? */
+		while (getDealer().getHandTotal() < 22) {
+			/* Draw cards while the dealer has less than 17 points */
 			if (getDealer().getHandTotal() < 17) {
-				getDealer().hit();
-
-				// dealer card visibility
-
-				if (dealerTimesHit == 0) {
-					dealerCard5.setVisible(true);
-					dealerCard5.setImage(getDealer().getHand().get(2).getCardFace());
+				switch (playerHit(BlackJack.getDealer())) {
+					case 1:
+						dealerCard5.setVisible(true);
+						dealerCard5.setImage(getDealer().getHand().get(2).getCardFace());
+						break;
+					case 2:
+						dealerCard2.setVisible(true);
+						dealerCard2.setImage(getDealer().getHand().get(3).getCardFace());
+						break;
+					case 3:
+						dealerCard6.setVisible(true);
+						dealerCard6.setImage(getDealer().getHand().get(4).getCardFace());
+						break;
+					case 4:
+						dealerCard1.setVisible(true);
+						dealerCard1.setImage(getDealer().getHand().get(5).getCardFace());
+						break;
 				}
-
-				if (dealerTimesHit == 1) {
-					dealerCard2.setVisible(true);
-					dealerCard2.setImage(getDealer().getHand().get(3).getCardFace());
-				}
-
-				if (dealerTimesHit == 2) {
-					dealerCard6.setVisible(true);
-					dealerCard6.setImage(getDealer().getHand().get(4).getCardFace());
-				}
-
-				if (dealerTimesHit == 3) {
-					dealerCard1.setVisible(true);
-					dealerCard1.setImage(getDealer().getHand().get(5).getCardFace());
-				}
-				dealerTimesHit++;
-
-			} else if (getDealer().getHandTotal() > getPlayer().getHandTotal()) {
-				dealerWin = true;
-				gameState = false;
-			} else if (getDealer().getHandTotal() < getPlayer().getHandTotal()) {
-				dealerWin = false;
-				gameState = false;
-
-			} else if (getDealer().getHandTotal() == getPlayer().getHandTotal()) {
-				dealerWin = false;
-				gameState = false;
+			} else if (dealerWin(getPlayer())) {
+				gameEnd(endState.LOSE);
+				break;
+			} else {
+				gameEnd(endState.WIN);
+				break;
 			}
+			dealerScoreValue.setText(Integer.toString(getDealer().getHandTotal()));
 		}
+		dealerScoreValue.setText(Integer.toString(getDealer().getHandTotal()));
 
-		dealerScoreValue.setText("" + getDealer().getHandTotal());
-		if (!dealerWin) {
-			winText.setVisible(true);
-
+		if (getDealer().getHandTotal() > 21) {
+			gameEnd((endState.WIN));		// Player Win
+		} else if (dealerWin(getPlayer())) {
+			gameEnd(endState.LOSE);
 		} else {
-			loseText.setVisible(true);
+			gameEnd(endState.WIN);
 		}
-		hitButton.setDisable(true);
-		standButton.setDisable(true);
+
 	}
 
 	@FXML
@@ -255,6 +253,12 @@ public class BasicFXMLController {
 	@FXML // This method is called by the FXMLLoader when initialization is complete
 	void initialize() {
 		bj = new BlackJack();
+
+		playerCard3.setImage(getPlayer().getHand().get(0).getCardBack());
+		playerCard4.setImage(getPlayer().getHand().get(1).getCardBack());
+
+		dealerCard3.setImage(getDealer().getHand().get(0).getCardBack());
+		dealerCard4.setImage(getDealer().getHand().get(1).getCardBack());
 
 		assert standButton != null : "fx:id=\"standButton\" was not injected: check your FXML file 'cardGameTemplate.fxml'.";
 		assert startButton != null : "fx:id=\"startButton\" was not injected: check your FXML file 'cardGameTemplate.fxml'.";
