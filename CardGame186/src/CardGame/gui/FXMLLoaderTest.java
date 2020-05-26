@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class FXMLLoaderTest extends Application {
 
     public static void main(String[] args) {
@@ -14,14 +16,19 @@ public class FXMLLoaderTest extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("cardGameTemplate.fxml"));
-        
         stage.setTitle("BlackJack");
-        stage.setScene(new Scene(root, 640, 400));
+        stage.setScene(createScene());
         stage.setResizable(false);
         stage.sizeToScene();
         stage.show();
 
     }
+
+    public static Scene createScene() throws IOException {
+        Parent root = FXMLLoader.load(FXMLLoaderTest.class.getResource("cardGameTemplate.fxml"));
+
+        return new Scene(root, 640, 400);
+    }
+
 
 }
