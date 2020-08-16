@@ -105,7 +105,9 @@ public class Card {
     public int returnRankValue() {
     	return rank;
     }
-
+    public String returnRank () {
+        return ranks[rank];
+    }
     /**
      * Returns a integer value for the suit of the card.
 	 * SUITS:

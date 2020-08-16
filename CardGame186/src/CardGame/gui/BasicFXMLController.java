@@ -5,6 +5,7 @@
 package CardGame.gui;
 
 import CardGame.BlackJack;
+import CardGame.GameLog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -104,7 +105,6 @@ public class BasicFXMLController {
 	@FXML
 	public void HitAction() throws Throwable {
 		//TODO LOG
-		System.out.println("You hit");
 
 		switch (playerHit(BlackJack.getPlayer())) {
 			case 1:
@@ -131,11 +131,12 @@ public class BasicFXMLController {
 		playerScoreValue.setText(Integer.toString(getPlayer().getHandTotal()));
 
 		if (getPlayer().getHandTotal() == 21) {
+			GameLog.addEvent("You got a BlackJack; you've won!", origin.SYSTEM, true);
 			gameEnd(endState.WIN);
 		} else if (hasBusted(getPlayer())) {
-			gameEnd(endState.BUST);
-		} else if (getPlayer().getHandTotal() > 21) {
+			GameLog.addEvent("You busted!", origin.SYSTEM, true);
 			hitButton.setDisable(true);
+			gameEnd(endState.BUST);
 		}
 	}
 
@@ -153,6 +154,7 @@ public class BasicFXMLController {
 				break;
 		}
 
+		GameLog.terminate();
 		/* Finally, disable all other buttons */
 		hitButton.setDisable(true);
 		standButton.setDisable(true);
@@ -161,10 +163,12 @@ public class BasicFXMLController {
 	@FXML
 	void StandAction() throws InterruptedException {
 		//TODO LOG
-		System.out.println("You stand");
+		GameLog.addEvent("Stand", getPlayer().status, true);
 		getDealer().setDealerTurn(true);
 
-		// dealerCard3.setImage(BlackJack.dealer.getHand().get(0).cardFace);
+		GameLog.addEvent("Dealer's turn", origin.SYSTEM, true);
+		GameLog.addEvent("Cards in hand: " + getDealer().getHandRanks().toString(), getDealer().status, true);
+
 		dealerCard4.setImage(getDealer().getHand().get(1).getCardFace());
 
 		/* FIX? */
@@ -190,9 +194,11 @@ public class BasicFXMLController {
 						break;
 				}
 			} else if (dealerWin(getPlayer())) {
+				GameLog.addEvent("The Dealer has won! Dealer's Total: " + getDealer().getHandTotal(), origin.SYSTEM, true);
 				gameEnd(endState.LOSE);
 				break;
 			} else {
+				GameLog.addEvent("You've won!", origin.SYSTEM, true);
 				gameEnd(endState.WIN);
 				break;
 			}
@@ -201,10 +207,13 @@ public class BasicFXMLController {
 		dealerScoreValue.setText(Integer.toString(getDealer().getHandTotal()));
 
 		if (getDealer().getHandTotal() > 21) {
+			GameLog.addEvent("You've won! The Dealer has busted. Dealer's Total: " + getDealer().getHandTotal(), origin.SYSTEM, true);
 			gameEnd((endState.WIN));		// Player Win
 		} else if (dealerWin(getPlayer())) {
+			GameLog.addEvent("The Dealer has won! Dealer's Total: " + getDealer().getHandTotal(), origin.SYSTEM, true);
 			gameEnd(endState.LOSE);
 		} else {
+			GameLog.addEvent("You've won!", origin.SYSTEM, true);
 			gameEnd(endState.WIN);
 		}
 
@@ -212,8 +221,9 @@ public class BasicFXMLController {
 
 	@FXML
 	void StartGame() {
-		System.out.println("game started");
-		if(hasBlackJack(getPlayer())) {
+		GameLog.addEvent("Game Start", origin.SYSTEM, true);
+		if (hasBlackJack(getPlayer())) {
+			GameLog.addEvent("Starting hand: BlackJack!", getPlayer().status, true);
 			winText.setVisible(true);
 			hitButton.setDisable(true);
 			standButton.setDisable(true);
@@ -227,6 +237,10 @@ public class BasicFXMLController {
 
 		dealerScoreValue.setText(Integer.toString(getDealer().getHandTotal()));
 		playerScoreValue.setText(Integer.toString(getPlayer().getHandTotal()));
+
+
+		GameLog.addEvent("Cards in hand: " + getPlayer().getHandRanks().toString(), getPlayer().status, true);
+		GameLog.addEvent("Cards in hand: " + getDealer().getHandRanks().toString(), getDealer().status, true);
 
 		startButton.setVisible(false);
 		standButton.setVisible(true);

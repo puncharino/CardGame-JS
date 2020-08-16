@@ -7,18 +7,24 @@ public class BlackJack {
     private static final Player p1 = new Player(deckBJ);
     private static final Dealer dealer = new Dealer(deckBJ);
 
+    public enum origin {
+        PLAYER, DEALER, SYSTEM
+    }
+
     // TODO implement multiple hands with multiple Player instances
 
 
     /* A new instance of the game BlackJack */
 
     public static int playerHit (Player p) {
+        GameLog.addEvent("Hit", p.status, true);
         p.hit();
         return p.numHit;
     }
 
     public static boolean hasBlackJack (Player entity) {
         return entity.getHandTotal() == 21;
+
     }
 
     public static boolean hasBusted (Player entity) {
@@ -26,9 +32,11 @@ public class BlackJack {
     }
 
     public static void restartBJ () {
+        GameLog.addEvent("Shuffling the deck.", origin.SYSTEM, true);
         deckBJ.reset();
         deckBJ.shuffle();
 
+        GameLog.addEvent("Dealing starting cards.", origin.SYSTEM, false);
         /* The player and dealer must draw two cards at the start of the game. */
         for (int i = 0; i < 2; ++i) {
             /* Player first, dealer second */
@@ -38,6 +46,7 @@ public class BlackJack {
     }
 
     public static boolean dealerWin(Player p) {
+        GameLog.addEvent("Player: " + p.getHandTotal() + ", Dealer: "+ dealer.getHandTotal(), origin.SYSTEM, false);
         return dealer.getHandTotal() > p.getHandTotal();
     }
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Player {
     public int numHit = -2;
+    public final BlackJack.origin status = BlackJack.origin.PLAYER;
 
     ArrayList<Card> hand = new ArrayList<>();
     private final Deck mainDeck; // Should be the same as main deck in game
@@ -46,5 +47,13 @@ public class Player {
 
     public ArrayList<Card> getHand() {
         return hand;
+    }
+
+    public ArrayList getHandRanks () {
+        ArrayList<String> ranks = new ArrayList<>();
+        for (Card o : getHand()) {
+            ranks.add(o.returnRank());
+        }
+        return ranks;
     }
 }

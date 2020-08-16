@@ -6,6 +6,8 @@ public class Dealer extends Player {
 
     public boolean dealerTurn = false;
 
+    public final BlackJack.origin status = BlackJack.origin.DEALER;
+
     public Dealer(Deck mainDeck) {
         super(mainDeck);
     }
